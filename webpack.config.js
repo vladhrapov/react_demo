@@ -5,17 +5,20 @@ var NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = {
     entry: {                            // entry point for build start
         bundle: [                       // name of bundle and an array for start point
+            'webpack-dev-server/client?http://localhost:8080',
+            'webpack/hot/only-dev-server',
             './src/main.js'
         ]
     },
     output: {
+        publicPath: '/public/',
         path: path.join(__dirname, '/public'),    // path to the bundle directory
         filename: '[name].js',                    // name of the file (in our case 'bundle' from entry)
         library: 'app'                            // through it using module methods
     },
     plugins: [
-        new webpack.NoErrorsPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ],
     module: {
         loaders: [{
