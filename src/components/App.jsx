@@ -1,4 +1,5 @@
 import React from 'react';
+import SomeComponent from './SomeComponent.jsx'
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
 
         return (<div>
             {messageNodes}
+            <SomeComponent />
         </div>);
     }
 }
