@@ -1,6 +1,6 @@
 import React from "react";
 
-class Badge extends React.Component {
+class Button extends React.Component {
   constructor() {
     super();
   }
@@ -15,4 +15,4 @@ class Badge extends React.Component {
   }
 }
 
-export default Badge;
+export default Button;
