@@ -1,5 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import React from "react";
+import ReactDOM from "react-dom";
+import ThumbnailList from "./components/ThumbnailList.jsx";
+import { options, options2 } from "./data.js";
 
-ReactDOM.render(<App />, document.getElementById('container'));
+console.log(options, options2);
+
+ReactDOM.render(React.createElement(ThumbnailList, options), document.getElementById("target"));
+//ReactDOM.render(<ThumbnailList  />, document.getElementById("target"));
