@@ -1,9 +1,13 @@
 import React from "react";
-import Badge from "./Badge.jsx";
+import Button from "./Button.jsx";
 
 class Thumbnail extends React.Component {
   constructor() {
     super();
+  }
+
+  showInbox() {
+    alert("handle inbox click");
   }
 
   render() {
@@ -15,7 +19,7 @@ class Thumbnail extends React.Component {
             <h3>{this.props.header}</h3>
             <p>{this.props.description}</p>
             <p>
-              <Badge title={this.props.title} number={this.props.number} />
+              <Button className="btn-primary" buttonClicked={this.showInbox.bind(this)} subTitleClassName="badge" title={this.props.title} subTitle={this.props.subTitle} />
             </p>
           </div>
         </div>
