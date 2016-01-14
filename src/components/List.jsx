@@ -1,4 +1,5 @@
 import React from "react";
+import ListItem from "./ListItem.jsx";
 
 class List extends React.Component {
   constructor() {
@@ -6,7 +7,9 @@ class List extends React.Component {
   }
 
   renderList() {
-    if (this.props.items && Object.keys(this.props.items).length === 0) {
+    let keys = Object.keys(this.props.items);
+
+    if (this.props.items && keys.indexOf(".key") >= 0 && keys.indexOf(".value") >= 0) {
       return (
         <h4>
           Hey, add smth to get started!
@@ -16,24 +19,25 @@ class List extends React.Component {
     else {
       let list = [];
 
-      for (let key in this.props.items) {
+      for (var i = 0; i < keys.length - 1; i++) {
+        let item = this.props.items[keys[i]];
+        item.key = keys[i];
+
         list.push(
-          <li>
-            {this.props.items[key].item}
-          </li>
+          <ListItem item={item} key={keys[i]} />
         );
       }
 
-      return list.slice(0, -1);
+      return list;
     }
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
-      <ul>
+      <div>
         {this.renderList()}
-      </ul>
+      </div>
     );
   }
 }

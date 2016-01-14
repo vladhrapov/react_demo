@@ -11,27 +11,37 @@ class App extends React.Component {
     super();
 
     this.state = {
-      items: {}
+      items: {},
+      loaded: false
     };
   }
 
   componentWillMount() {
+    let fb = new Firebase(rootUrl + "items/");
     // bindAsObject is a method from ReactFire that sets: this.state.items = {...}
-    this.bindAsObject(new Firebase(rootUrl + "items/"), "items");
+    this.bindAsObject(fb, "items");
+    fb.on('value', this.handleDataLoaded.bind(this));
+  }
+
+  handleDataLoaded() {
+    this.setState({
+      loaded: true
+    });
   }
 
   render() {
+    // console.log(this.state);
     return (
       <div>
         <div className="row panel panel-default">
           <div className="col-md-8 col-md-offset-2">
             <h2 className="text-center">
-              To-Do App
+              ....
             </h2>
           </div>
         </div>
         <Header itemsStore={this.firebaseRefs.items} />
-        <List items={this.state.items} />
+        <List className={"content " + (!!this.state.loaded ? "loaded" : "")} items={this.state.items} />
       </div>
     );
   }
