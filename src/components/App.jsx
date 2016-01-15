@@ -39,11 +39,9 @@ class App extends React.Component {
 
   renderDeleteButton() {
     if (!this.state.loaded) {
-      console.log("null");
-      return;// null;
+      return;
     }
     else {
-      console.log("template");
       return (
         <div className="text-center clear-complete">
           <hr />
