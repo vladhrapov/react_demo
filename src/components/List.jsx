@@ -9,7 +9,7 @@ class List extends React.Component {
   renderList() {
     let keys = Object.keys(this.props.items);
 
-    if (this.props.items && keys.indexOf(".key") >= 0 && keys.indexOf(".value") >= 0) {
+    if (this.props.items && keys.indexOf(".value") >= 0) {
       return (
         <h4>
           Hey, add smth to get started!

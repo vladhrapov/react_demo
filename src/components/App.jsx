@@ -17,10 +17,10 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    let fb = new Firebase(rootUrl + "items/");
+    this.fb = new Firebase(rootUrl + "items/");
     // bindAsObject is a method from ReactFire that sets: this.state.items = {...}
-    this.bindAsObject(fb, "items");
-    fb.on('value', this.handleDataLoaded.bind(this));
+    this.bindAsObject(this.fb, "items");
+    this.fb.on('value', this.handleDataLoaded.bind(this));
   }
 
   handleDataLoaded() {
@@ -29,8 +29,32 @@ class App extends React.Component {
     });
   }
 
+  clearComplete() {
+    for (let key in this.state.items) {
+      if (this.state.items[key].done) {
+        this.fb.child(key).remove();
+      }
+    }
+  }
+
+  renderDeleteButton() {
+    if (!this.state.loaded) {
+      console.log("null");
+      return;// null;
+    }
+    else {
+      console.log("template");
+      return (
+        <div className="text-center clear-complete">
+          <hr />
+          <button type="button" className="btn btn-primary" onClick={this.clearComplete.bind(this)}>Clear Complete</button>
+        </div>
+      );
+    }
+  }
+
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div>
         <div className="row panel panel-default">
@@ -41,7 +65,10 @@ class App extends React.Component {
           </div>
         </div>
         <Header itemsStore={this.firebaseRefs.items} />
-        <List className={"content " + (!!this.state.loaded ? "loaded" : "")} items={this.state.items} />
+        <div className={"content " + (!!this.state.loaded ? "loaded" : "")}>
+          <List items={this.state.items} />
+          {this.renderDeleteButton()}
+        </div>
       </div>
     );
   }

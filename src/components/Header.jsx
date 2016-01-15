@@ -31,7 +31,7 @@ class Header extends React.Component {
       <div className="input-group">
         <input type="text" className="form-control" value={this.state.newItem} onChange={this.changeInput.bind(this)}/>
         <span className="input-group-btn">
-          <button type="button" className="btn btn-default" onClick={this.addItem.bind(this)}>
+          <button type="button" className="btn btn-default btn-primary" onClick={this.addItem.bind(this)}>
             Add Item
           </button>
         </span>
