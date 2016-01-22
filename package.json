@@ -4,6 +4,8 @@
   "description": "Demo App",
   "main": "index.js",
   "scripts": {
+    "server": "node ./node_modules/webpack-dev-server/bin",
+    "build": "node ./node_modules/webpack/bin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "VK",
