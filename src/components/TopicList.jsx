@@ -1,20 +1,25 @@
 import React from "react";
-import Api from "../utils/Api.jsx";
+import Reflux from "reflux";
+import ReactMixin from "react-mixin";
+import TopicStore from "../stores/TopicStore.jsx";
 
 class TopicList extends React.Component {
   constructor() {
     super();
-    this.api = new Api();
+    this.topicStore = new TopicStore();
+    this.listenTo(this.topicStore, "onChange");
     this.state = {
       topics: []
     };
   }
 
   componentWillMount() {
-    this.api.get("topics/defaults").then((json) => {
-      this.setState({
-        topics: json.data
-      });
+    this.topicStore.getTopics()
+  }
+
+  onChange(event, topics) {
+    this.setState({
+      topics: topics
     });
   }
 
@@ -39,5 +44,7 @@ class TopicList extends React.Component {
     );
   }
 }
+
+ReactMixin(TopicList.prototype, Reflux.ListenerMixin);
 
 export default TopicList;
