@@ -4,8 +4,8 @@
   "description": "Demo App",
   "main": "index.js",
   "scripts": {
-    "server": "node ./node_modules/webpack-dev-server/bin",
-    "build": "node ./node_modules/webpack/bin",
+    "server": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "build": "node ./node_modules/webpack/bin/webpack.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "VK",
@@ -20,7 +20,12 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "history": "^1.17.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "react-mixin": "^3.0.3",
+    "react-router": "^1.0.3",
+    "reflux": "^0.3.0",
+    "whatwg-fetch": "^0.11.0"
   }
 }

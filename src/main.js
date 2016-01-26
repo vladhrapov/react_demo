@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Routes from "./Routes.jsx";
+import Api from "./utils/Api.jsx";
 
 
-//ReactDOM.render(React.createElement(ThumbnailList, options), document.getElementById("target"));
-//ReactDOM.render(React.createElement(Dropdown, options2), document.getElementById("dropdown-wrapper"));
-//ReactDOM.render(<ThumbnailList  />, document.getElementById("target"));
+ReactDOM.render(Routes, document.getElementById("target"));
