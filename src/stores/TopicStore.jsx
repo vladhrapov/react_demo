@@ -1,5 +1,7 @@
 import Reflux from "reflux";
+import Promise from "bluebird";
 import Api from "../utils/Api.jsx";
+import TopicActions from "../actions/TopicActions.jsx";
 
 Reflux.Store = Reflux.createStore().constructor;
 
@@ -7,7 +9,6 @@ class TopicStore extends Reflux.Store {
   constructor() {
     super();
     this.api = new Api();
-    console.log(Reflux);
   }
 
   triggerChange() {
@@ -21,5 +22,7 @@ class TopicStore extends Reflux.Store {
     });
   }
 }
+
+TopicStore.prototype.listenables = [TopicActions];
 
 export default TopicStore;

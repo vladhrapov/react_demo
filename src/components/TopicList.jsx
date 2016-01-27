@@ -1,7 +1,9 @@
 import React from "react";
 import Reflux from "reflux";
 import ReactMixin from "react-mixin";
+import {Router, Route, Link, HashHistory} from "react-router";
 import TopicStore from "../stores/TopicStore.jsx";
+import TopicActions from "../actions/TopicActions.jsx";
 
 class TopicList extends React.Component {
   constructor() {
@@ -14,7 +16,7 @@ class TopicList extends React.Component {
   }
 
   componentWillMount() {
-    this.topicStore.getTopics()
+    TopicActions.getTopics();
   }
 
   onChange(event, topics) {
@@ -24,13 +26,12 @@ class TopicList extends React.Component {
   }
 
   renderTopics() {
-    let i = -1;
     return this.state.topics.map((topic) => {
-      i++;
       return (
-        <li key={i}>
-          {JSON.stringify(topic)}
-        </li>
+        <Link to={"topics/" + topic.id} className="list-group-item" key={topic.id}>
+          <h4>{topic.name}</h4>
+          <p>{topic.description}</p>
+        </Link>
       );
     });
   }
