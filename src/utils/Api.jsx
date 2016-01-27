@@ -6,12 +6,14 @@ let apiKey = "ef6a0ad37b72968";
 
 class Api {
   constructor() {
-    
+
   }
 
   get(url) {
     return fetch(rootUrl + url, {
-      headers: "Client-ID " + apiKey
+      headers: {
+        "Authorization": "Client-ID " + apiKey
+      }
     }).then(function (response) {
       return response.json();
     });

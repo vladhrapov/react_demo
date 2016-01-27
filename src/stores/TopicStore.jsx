@@ -16,7 +16,7 @@ class TopicStore extends Reflux.Store {
   }
 
   getTopics() {
-    return this.api.get("topics/defaults").then((json) => {
+    this.api.get("topics/defaults").then((json) => {
       this.topics = json.data;
       this.triggerChange();
     });

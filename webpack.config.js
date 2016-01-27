@@ -21,14 +21,20 @@ module.exports = {
         new webpack.NoErrorsPlugin()
     ],
     module: {
-        loaders: [{
+        loaders: [
+          {
             test: /(\.jsx|\.js)$/,                          // tests files for loader with extensions
             include: path.join(__dirname, "src"),           // include directories for bundling only my code
             loader: 'babel',                                // babel for compiling (can write babel-loader instead of babel)
             query: {
                 presets: ['es2015', 'react']                // dependencies for ES6(syntax) and react(compiling jsx)
             }
-        }]
+        },
+        {
+          test: /\.scss$/,
+          loaders: ["style?sourceMap", "css?sourceMap", "sass?sourceMap"]
+        }
+      ]
     },
     watch: NODE_ENV == 'development',                         // watch for file changes
     watchOptions: {

@@ -28,7 +28,7 @@ class Header extends React.Component {
   renderTopics() {
     return this.state.topics.slice(0, 6).map((topic) => {
       return (
-        <li key={topic.id}>
+        <li key={topic.id} activeClassName="active">
           <Link to={"topics/" + topic.id}>
             {topic.name}
           </Link>
