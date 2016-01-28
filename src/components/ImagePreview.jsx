@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router";
+import ImageDetails from "./ImageDetails.jsx";
 
 class ImagePreview extends React.Component {
   constructor() {
@@ -55,7 +56,7 @@ class ImagePreview extends React.Component {
   render() {
     console.log("hovering: ", this.state.hovering, " animated: ", this.props.animated);
     return (
-      <Link to={"images/" + this.props.id} className="image-preview-block"
+      <Link to={"topics/" + this.props.topicId + "/images/" + this.props.id} className="image-preview-block"
           onMouseEnter={this.handleMouseEnter.bind(this)}
           onMouseLeave={this.handleMouseLeave.bind(this)}>
             {this.props.animated && this.state.hovering ? this.renderVideo() : this.renderImage()}

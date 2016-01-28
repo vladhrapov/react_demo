@@ -6,8 +6,8 @@ class ImageDetails extends React.Component {
   }
 
   render() {
-    console.log(this.props.params.id);
-    return (<div>Img details {this.props.params.id}</div>);
+    console.log(this.props.params.imageId);
+    return (<div>Img details {this.props.params.imageId}</div>);
   }
 }
 

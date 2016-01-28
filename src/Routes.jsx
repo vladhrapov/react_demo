@@ -8,7 +8,7 @@ let routes = (
   <Router history={HashHistory}>
     <Route path="/" component={Main}>
       <Route path="topics/:id" component={Topic}/>
-      <Route path="/images/:id" component={ImageDetails}/>
+      <Route path="topics/:id/images/:imageId" component={ImageDetails}/>
     </Route>
   </Router>
 );
