@@ -1,7 +1,7 @@
 import React from "react";
 import Reflux from "reflux";
 import ReactMixin from "react-mixin";
-import {Router, Route, Link, HashHistory} from "react-router";
+import {Link} from "react-router";
 import TopicActions from "../actions/TopicActions.jsx";
 import TopicStore from "../stores/TopicStore.jsx";
 

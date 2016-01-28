@@ -32,15 +32,14 @@ class Topic extends React.Component {
   renderImages() {
     return this.state.images.map((image) => {
       return (
-        <ImagePreview key={image.id} {...image}/>
+        <ImagePreview key={image.id} topicId={this.props.params.id} {...image}/>
       );
     });
   }
 
   render() {
     return (
-      <div>
-        topic {this.props.params.id}
+      <div className="topic">
         {this.renderImages()}
       </div>
     );

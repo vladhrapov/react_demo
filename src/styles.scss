@@ -4,3 +4,62 @@
     color: #000;
   }
 }
+
+.topic {
+  text-align: center;
+}
+
+.image-preview-block {
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  background-color: black;
+  position: relative;
+
+  .inset {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(256, 256, 256, 0.8);
+    color: black;
+    font-weight: 900;
+    font-size: 13px;
+  }
+
+  .glyphicon {
+    position: absolute;
+    color: rgba(256, 256, 256, 0.5);
+    border-radius: 50%;
+    font-size: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+  }
+
+  .image-preview {
+    float: left;
+    height: 200px;
+    width: 200px;
+  }
+
+  .video-preview {
+    float: left;
+    height: 200px;
+    width: 200px;
+  }
+
+  video {
+    height: 200px;
+    width: 200px;
+    vertical-align: middle;
+    background-color: black;
+  }
+
+  &:after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+}

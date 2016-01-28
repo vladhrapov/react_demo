@@ -10,13 +10,19 @@ class ImageStore extends Reflux.Store {
     this.api = new Api();
   }
 
+  removeUnvailableImages(arr) {
+    return arr.filter((img) => {
+      return !img.is_album;
+    });
+  }
+
   triggerChange() {
     this.trigger("change", this.images);
   }
 
   getImages(topicId) {
     this.api.get("topics/" + topicId).then((json) => {
-      this.images = json.data;
+      this.images = this.removeUnvailableImages(json.data);
       this.triggerChange();
     });
   }
