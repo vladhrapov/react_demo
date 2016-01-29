@@ -26,6 +26,32 @@ class ImageStore extends Reflux.Store {
       this.triggerChange();
     });
   }
+
+  getImage(imageId) {
+    this.api.get("gallery/image/" + imageId).then((json) => {
+      if (this.images) {
+        this.images.push(json.data);
+      }
+      else {
+        this.images = [json.data];
+      }
+      this.triggerChange();
+    });
+  }
+
+  find(imageId) {
+    let image = this.images.filter((item) => {
+      return item.id === imageId;
+    });
+
+    if (image) {
+      return image;
+    }
+    else {
+      this.getImage(imageId);
+      return null;
+    }
+  }
 }
 
 ImageStore.prototype.listenables = [ImageActions];

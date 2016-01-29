@@ -1,4 +1,6 @@
 export default {
   getImages: "getImages",
-  getTopics: "getTopics"
+  getTopics: "getTopics",
+  getImage: "getImage",
+  getComments: "getComments"
 }

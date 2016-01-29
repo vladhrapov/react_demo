@@ -7,6 +7,20 @@
 
 .topic {
   text-align: center;
+
+  .image-preview-block {
+    animation: fadein 0.65s ease-out;
+
+    @keyframes fadein {
+      0% {
+        opacity: 0
+      }
+
+      100% {
+        opacity: 1.0;
+      }
+    }
+  }
 }
 
 .image-preview-block {
@@ -61,5 +75,19 @@
     content: '';
     clear: both;
     display: block;
+  }
+}
+
+.image-details {
+  .panel-body {
+    text-align: center;
+  }
+
+  img, video {
+    max-width: 100%;
+  }
+
+  .btn-holder {
+    margin-bottom: 30px;
   }
 }
