@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ThumbnailList from "./components/ThumbnailList.jsx";
-import Dropdown from "./components/Dropdown.jsx";
-import { options, options2 } from "./data.js";
+import {Provider} from "react-redux";
+import Routes from "./Routes.jsx";
+import Store from "./store/Store";
+import "babel-polyfill";
 
-console.log(options, options2);
+const store = new Store();
 
-ReactDOM.render(React.createElement(ThumbnailList, options), document.getElementById("target"));
-ReactDOM.render(React.createElement(Dropdown, options2), document.getElementById("dropdown-wrapper"));
-//ReactDOM.render(<ThumbnailList  />, document.getElementById("target"));
+ReactDOM.render(
+  <Provider store={store}>
+    {Routes}
+  </Provider>,
+  document.getElementById("target"));
