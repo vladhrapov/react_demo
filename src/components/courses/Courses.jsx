@@ -2,18 +2,19 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as CourseActions from "../../actions/CourseActions";
+import CourseList from "./CourseList";
 
 class Courses extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      course: {
-        title: ""
-      }
-    };
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onSave = this.onSave.bind(this);
+    // this.state = {
+    //   course: {
+    //     title: ""
+    //   }
+    // };
+    // this.onTitleChange = this.onTitleChange.bind(this);
+    // this.onSave = this.onSave.bind(this);
   }
 
   onTitleChange(event) {
@@ -41,18 +42,19 @@ class Courses extends React.Component {
     return (
       <div>
         <h1>Courses</h1>
-        {this.renderCourses()}
-        <h2>Add course{this.props.bla}</h2>
-        <input type="text" onChange={this.onTitleChange} value={this.state.course.title}/>
-        <input type="submit" value="Save" onClick={this.onSave}/>
+
+        <CourseList courses={this.props.courses} />
       </div>
+      // <h2>Add course{this.props.bla}</h2>
     );
+    // <input type="text" onChange={this.onTitleChange} value={this.state.course.title}/>
+    // <input type="submit" value="Save" onClick={this.onSave}/>
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log(state);
-  console.log(ownProps);
+  // console.log(state);
+  // console.log(ownProps);
   return {
     courses: state.courses
   };
@@ -61,14 +63,14 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     // createCourse: course => dispatch(CourseActions.createCourse(course))
-    actions: bindActionCreators(CourseActions, dispatch)
+    // actions: bindActionCreators(CourseActions, dispatch)
   }
 }
 
 Courses.propTypes = {
   //dispatch: PropTypes.func.isRequired,
   // createCourse: PropTypes.func.isRequired,
-  actions: PropTypes.object.isRequired,
+  // actions: PropTypes.object.isRequired,
   courses: PropTypes.array.isRequired
 };
 
