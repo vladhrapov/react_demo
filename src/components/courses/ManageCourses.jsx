@@ -1,4 +1,5 @@
 import React, {PropTypes} from "react";
+import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as CourseActions from "../../actions/CourseActions";
@@ -20,12 +21,19 @@ class ManageCourses extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onSave() {
-
+  onSave(event) {
+    event.preventDefault();
+    console.log(this.state.course);
+    this.props.actions.saveCourse(this.state.course).then(() => {
+      browserHistory.push("/courses");
+    });
   }
 
-  onChange() {
-
+  onChange(event) {
+    const field = event.target.name;
+    let course = this.state.course;
+    course[field] = event.target.value;
+    return this.setState({ course: course });
   }
 
   render() {
@@ -34,7 +42,7 @@ class ManageCourses extends React.Component {
       <div>
         <h1>Manage Courses</h1>
         <CourseForm
-          allAuthors={[]}
+          allAuthors={this.props.authors}
           course={this.state.course}
           errors={this.state.errors}
           onSave={this.onSave}
@@ -50,8 +58,17 @@ function mapStateToProps(state, ownProps) {
   // console.log(state);
   // console.log(ownProps);
   let course = {id: "", watchRef: "", title: "", authorId: "", length: "", category: ""};
+
+  const authorsDropdownFormatted = state.authors.map(author => {
+    return {
+      value: author.id,
+      text: author.firstName + " " + author.lastName
+    };
+  });
+
   return {
-    course: course
+    course: course,
+    authors: authorsDropdownFormatted
   };
 }
 
@@ -67,6 +84,7 @@ ManageCourses.propTypes = {
   // createCourse: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   course: PropTypes.object.isRequired,
+  authors: PropTypes.array.isRequired,
   errors: PropTypes.object
 };
 
