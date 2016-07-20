@@ -21,12 +21,36 @@ class ManageCourses extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  static getCourseById(courses, courseId) {
+    const course = courses.filter(course => course.id == courseId);
+    if (course) {
+      return course[0];
+    }
+    return null;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.course);
+    if (this.props.course.id != nextProps.course.id) {
+      this.setState({
+        course: Object.assign({}, nextProps.course)
+      });
+    }
+  }
+
   onSave(event) {
     event.preventDefault();
     console.log(this.state.course);
-    this.props.actions.saveCourse(this.state.course).then(() => {
-      browserHistory.push("/courses");
-    });
+    // console.log("this.context", this.context, " this.props", this.props);
+    // Case 1
+    // this.props.actions.saveCourse(this.state.course).then(() => {
+    //   browserHistory.push("/courses");
+    // });
+
+    // Case 2
+    // Can rewrite top row like this because of ManageCourses.contextTypes
+    this.props.actions.saveCourse(this.state.course);
+    this.context.router.push("/courses");
   }
 
   onChange(event) {
@@ -56,8 +80,13 @@ class ManageCourses extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   // console.log(state);
-  // console.log(ownProps);
+  console.log("ownProps: ", ownProps);
+  const courseId = ownProps.params.id;
   let course = {id: "", watchRef: "", title: "", authorId: "", length: "", category: ""};
+
+  if (courseId && state.courses.length) {
+    course = ManageCourses.getCourseById(state.courses, courseId);
+  }
 
   const authorsDropdownFormatted = state.authors.map(author => {
     return {
@@ -87,5 +116,11 @@ ManageCourses.propTypes = {
   authors: PropTypes.array.isRequired,
   errors: PropTypes.object
 };
+
+// pull react router to this.context.router
+// may be useful for testing
+ManageCourses.contextTypes = {
+  router: PropTypes.object
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCourses);

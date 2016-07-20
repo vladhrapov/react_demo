@@ -12,6 +12,7 @@ export default (
       <IndexRoute component={Home}/>
       <Route path="about" component={About}/>
       <Route path="courses" bla="56" component={Courses}/>
+      <Route path="course" bla="56" component={ManageCourses}/>
       <Route path="courses/:id" component={ManageCourses}/>
     </Route>
   </Router>
